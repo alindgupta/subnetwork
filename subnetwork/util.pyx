@@ -32,6 +32,8 @@ cdef np.ndarray adj(int *a, int *b, np.npy_intp length):
         ptr[ix] = 1
     cdef np.ndarray p = np.PyArray_SimpleNewFromData(
         1, &buf, np.NPY_INT, ptr)
+    np.PyArray_UpdateFlags(
+        p, p.flags.num | np.NPY_OWNDATA)
     return p
 
 
@@ -63,4 +65,6 @@ cdef np.ndarray adjw(int *a, int *b, double *w, np.npy_intp length):
         ptr[i] = w[i]
     cdef np.ndarray p = np.PyArray_SimpleNewFromData(
         1, &buf, np.NPY_DOUBLE, ptr)
+    np.PyArray_UpdateFlags(
+        p, p.flags.num | np.NPY_OWNDATA)
     return p
