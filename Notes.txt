@@ -33,36 +33,3 @@ which is equiv to arg min <f> u(f) + u(z|f) -> go to eq 3
 2. total number of edges
 3. netscore of clique
 4. Z-scores from microarray data
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
