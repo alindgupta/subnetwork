@@ -1,0 +1,68 @@
+two microarray datasets = wt and rfx-
+two outputs = involved in ciliogenesis or not
+
+m = total number of genes
+fi = discriminative score for ith gene where i = [1..m]
+
+MRF
+S = {m genes}, {Ni = connections of gene i in S}
+
+1-vertex clique = {S}
+2-vertex clique = {{gene i with its markov blanket according to S}}
+
+s.t.
+
+P(f) > 0 (Discriminative marginal score for a node)
+P(fi|f(s-{i}) = P(fi|fNi) (Markov assertion of independance)
+
+
+P(fi) ~ Gibbs = 1/C * exp(-1/T u(f))
+u(f) depends on clique potentials
+T is a hyperparameter
+
+Z-scores (discrimnative scores)
+Z = {Zi}, i = 1..m 
+Z is sampled from inverse normal cum density function of p-values, which are gotten from t-test
+Z = f + e where e ~ N(0,1)
+
+want arg max <f> log P(f|Z)
+which is equiv to arg min <f> u(f) + u(z|f) -> go to eq 3
+
+
+1. calculate degrees
+2. total number of edges
+3. netscore of clique
+4. Z-scores from microarray data
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
