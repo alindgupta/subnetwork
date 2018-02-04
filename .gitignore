@@ -3,4 +3,7 @@ Icon*
 *#
 .DS_Store
 __pycache__
-
+*.c
+*.html
+*.so
+subnetwork/build/
