@@ -5,6 +5,8 @@ import os
 
 
 class InteractionGraph:
+    """ Interaction graph based on an adjacency matrix
+    modelled as a Markov Random Field """
     def __init__(
             self,
             adjacency_matrix,
@@ -39,17 +41,6 @@ class InteractionGraph:
     def num_edges(self):
         return np.count_nonzero(self._adjmat)
 
-   @property
-   pass 
-
-
-    
-
-
-
-
-def get_markov_blanket():
-    id_ = pass
 
 def convert_to_adj_matrix(df, sparse=True, triangular=True):
     """ Convert to adjacency matrix
@@ -77,8 +68,6 @@ def convert_to_adj_matrix(df, sparse=True, triangular=True):
         adj_matrix = sparse.csr_matrix(adj_matrix)
     return idx, adj_matrix
 
-def mrf(mat):
-    t = tf.get_default_graph()
     
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -91,5 +80,3 @@ if __name__ == '__main__':
         '-f',
         default=None)
     args = parser.parse_args()
-    
-    
