@@ -2,6 +2,39 @@ import edward as ed
 import collections
 import sys
 import os
+import scipy.special import ndtri
+
+
+def z_scores(p):
+    """ Return Z-scores associated with a p-value. 
+
+    Parameters
+    ----------
+    p : np.ndarray[float] or List[float]
+        An array of p-values.
+
+    Returns
+    -------
+    np.ndarray[float32]
+        An array of corresponding Z-scores
+        calculated from the inverse cdf of the standard Normal.
+
+    Raises
+    ------
+    ValueError
+        For an invalid p-value (i.e. not in the interval [0, 1])
+
+    """
+    p = np.array(p, dtype=np.float32)
+    invalid_p = p[(p < 0.0) & (p > 1.0)]
+    if invalid_p.size != 0:
+        raise ValueError(
+            f'Found invalid probability value{invalid_p}')
+    return ndtri(1 - p)
+
+
+def net_score(clique):
+    pass
 
 
 class InteractionGraph:
@@ -17,7 +50,7 @@ class InteractionGraph:
             raise ValueError('Shape mismatch')
         if length(ids) == adjacency_matrix.shape[0]:
             raise ValueError('Shape mismatch')
-        
+
         self._adjmat = adjacency_matrix
         self._pot = potentials
         self._dict = ids
@@ -54,7 +87,7 @@ def convert_to_adj_matrix(df, sparse=True, triangular=True):
       Tuple containing
       [1] Dict[str, id], dict of names from df mapped to int 
       [2] Either[np.array, csr_matrix]
-    
+
     """
     idx = collections.Counter(df.iloc[:, 0])
     adj_matrix = np.zeros(
@@ -68,7 +101,7 @@ def convert_to_adj_matrix(df, sparse=True, triangular=True):
         adj_matrix = sparse.csr_matrix(adj_matrix)
     return idx, adj_matrix
 
-    
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument(
