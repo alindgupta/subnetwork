@@ -11,14 +11,12 @@ cdef np.ndarray adj(int *a, int *b, np.npy_intp length):
     
         Parameters
         ----------
-
         a: first vector of size `length`
         b: second vector of size `length`
         length: length of `a` and `b`
 
         Returns
         -------
-
         Numpy array of ints representing adjacency matrix
 
     """
@@ -43,7 +41,6 @@ cdef np.ndarray adjw(int *a, int *b, double *w, np.npy_intp length):
     
         Parameters
         ----------
-
         a: first vector of size `length`
         b: second vector of size `length`
         w: interaction weights, size `length`
@@ -51,7 +48,6 @@ cdef np.ndarray adjw(int *a, int *b, double *w, np.npy_intp length):
 
         Returns
         -------
-
         Numpy array of doubles representing weighted adjacency matrix
 
     """
