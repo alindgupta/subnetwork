@@ -1,8 +1,26 @@
-import edward as ed
+import pystan as ps
 import collections
 import sys
 import os
 import scipy.special import ndtri
+
+"""
+data {
+  real<lower=0, upper=0> r[];
+}
+
+model {
+  for (i = 1:m) {
+     
+  }
+}
+
+
+"""
+
+
+    
+    
 
 
 def z_scores(p):
@@ -29,11 +47,11 @@ def z_scores(p):
     invalid_p = p[(p < 0.0) & (p > 1.0)]
     if invalid_p.size != 0:
         raise ValueError(
-            f'Found invalid probability value{invalid_p}')
+            f'Found invalid probability value: {invalid_p}')
     return ndtri(1 - p)
 
 
-def net_score(clique):
+def potential(clique):
     pass
 
 
@@ -66,9 +84,8 @@ class InteractionGraph:
         connected = np.where(self._adjmat[:,id_] == 1)
         return tuple(self._dict[elem] for elem in connected)
 
-    def degrees(self, name):
-        id_ = self._get_id(name)
-        return np.count_nonzero(self._adjmat[id_])
+    def degrees(self):
+        return np.count_nonzero(self.adjmat)
 
     @property
     def num_edges(self):
